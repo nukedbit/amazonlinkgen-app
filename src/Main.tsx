@@ -110,8 +110,9 @@ export default class Main extends React.Component<IMainProps, any> {
                 
                 <TextField styles={{ root: { width: '100%'} }} label="Amazon URL" onChange={(e, newValue?: string) => this.setState({url: newValue })} />
                 <TextField label="Tracking Id" value={code} onChange={(e, newValue?: string) => {
-                    this.setState({code: newValue });
-                    this.storeCode();
+                    this.setState({code: newValue }, () => {
+                        this.storeCode();
+                    });
                 }} />
             </Stack>
             <Stack  horizontalAlign="center" {...columnProps}>
