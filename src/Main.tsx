@@ -100,7 +100,7 @@ export default class Main extends React.Component<IMainProps, any> {
     }
 
     render(): React.ReactElement<IMainProps> {
-        let {columnProps, url, code} = this.state;
+        let {columnProps, url, code, rememberCode} = this.state;
         return (<Stack horizontalAlign="center" tokens={{ childrenGap: 20 }} styles={{ root: { width: "100%", padding: "2rem" } }}>
             <Stack horizontalAlign="center" tokens={{ childrenGap: 20 }}>
                 <img src={logo} style={{width:"100px"}}></img>
@@ -116,7 +116,7 @@ export default class Main extends React.Component<IMainProps, any> {
                 }} />
             </Stack>
             <Stack  horizontalAlign="center" {...columnProps}>
-                <Checkbox checked={!_.isEmpty(code)} label="Remember affiliate code (in the browser no data is sent anywhere)" onChange={this.onCheckboxChange} />
+                <Checkbox checked={!_.isEmpty(code) || rememberCode} label="Remember affiliate code (in the browser no data is sent anywhere)" onChange={this.onCheckboxChange} />
                 <DefaultButton
                     disabled={_.isEmpty(url) || _.isEmpty(code)}
                     text="Generate"
