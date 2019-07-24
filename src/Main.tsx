@@ -4,7 +4,7 @@ import { Stack, IStackProps } from 'office-ui-fabric-react/lib/Stack';
 import { css, classNamesFunction, DefaultButton, IButtonProps, IStyle, Label, PrimaryButton, Checkbox } from 'office-ui-fabric-react';
 import * as _ from "lodash";
 import { copyFile } from "fs";
-
+import logo from './amazon-link-builder.png';
 import copy from "clipboard-copy";
 
 export interface IMainProps {
@@ -12,6 +12,7 @@ export interface IMainProps {
 }
 
 let findStoreRegExp = new RegExp("(https:\/\/.*amazon\.[^/]*)");
+let findAsinRegExp = new RegExp("(?:[/dp/]|$)([A-Z0-9]{10})");
 
 export default class Main extends React.Component<IMainProps, any> {
 
@@ -19,7 +20,7 @@ export default class Main extends React.Component<IMainProps, any> {
         super(props);
         const columnProps: Partial<IStackProps> = {
             tokens: { childrenGap: 15 },
-            styles: { root: { width: "500", } }
+            styles: { root: { width: "500px", } }
         };
         let code = localStorage.getItem("code");
         this.state = {
@@ -41,11 +42,23 @@ export default class Main extends React.Component<IMainProps, any> {
         return entries.next().value[1];
     };
 
+    getAsin = (url: string) => {
+        let m = url.match(findAsinRegExp)
+        console.log("match", m);
+        if(m){
+            return m[1];
+        }
+        return null;
+    };
+
     generateUrl = () => {
         if(!_.isEmpty(this.state.url) && !_.isEmpty(this.state.code)) {
             let store = this.getStore(this.state.url!);
-            let url = `${store}?${this.state.code}`;
-            this.setState({link:url});
+            let asin = this.getAsin(this.state.url);
+            if(!_.isEmpty(store) && !_.isEmpty(asin)){
+                let url = `${store}/dp/product/${asin}?tag=${this.state.code}`;
+                this.setState({link:url});
+            }
         }
         this.storeCode();
     };
@@ -88,16 +101,21 @@ export default class Main extends React.Component<IMainProps, any> {
 
     render(): React.ReactElement<IMainProps> {
         let {columnProps, url, code} = this.state;
-        return (<Stack tokens={{ childrenGap: 50 }} styles={{ root: { width: "100%", padding: "2rem" } }}>
-            <Stack horizontalAlign="center" horizontal {...columnProps}>
-                <TextField label="Amazon URL" onChange={(e, newValue?: string) => this.setState({url: newValue })} />
-                <TextField label="Affiliate Code" value={code} onChange={(e, newValue?: string) => {
+        return (<Stack horizontalAlign="center" tokens={{ childrenGap: 20 }} styles={{ root: { width: "100%", padding: "2rem" } }}>
+            <Stack horizontalAlign="center" tokens={{ childrenGap: 20 }}>
+                <img src={logo} style={{width:"100px"}}></img>
+                <h1>Amazon Affiliate link builder</h1>
+            </Stack>
+            <Stack horizontalAlign="stretch"  {...columnProps} >
+                
+                <TextField styles={{ root: { width: '100%'} }} label="Amazon URL" onChange={(e, newValue?: string) => this.setState({url: newValue })} />
+                <TextField label="Tracking Id" value={code} onChange={(e, newValue?: string) => {
                     this.setState({code: newValue });
                     this.storeCode();
                 }} />
             </Stack>
             <Stack  horizontalAlign="center" {...columnProps}>
-                <Checkbox label="Remember affiliate code (in the browser no data is sent anywhere)" onChange={this.onCheckboxChange} />
+                <Checkbox checked={!_.isEmpty(code)} label="Remember affiliate code (in the browser no data is sent anywhere)" onChange={this.onCheckboxChange} />
                 <DefaultButton
                     disabled={_.isEmpty(url) || _.isEmpty(code)}
                     text="Generate"
