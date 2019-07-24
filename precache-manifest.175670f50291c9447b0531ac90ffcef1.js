@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e3187a03f08d382c47efea5717d76199",
+    "revision": "db58f9bf4bf3c090fffc636da534595a",
     "url": "/amazonlinkgen-app/index.html"
   },
   {
-    "revision": "1374cde855cc4cec6d3d",
+    "revision": "4cb6a0ab22f85f75634c",
     "url": "/amazonlinkgen-app/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/amazonlinkgen-app/static/js/2.d530edf0.chunk.js"
   },
   {
-    "revision": "1374cde855cc4cec6d3d",
-    "url": "/amazonlinkgen-app/static/js/main.9bc6af23.chunk.js"
+    "revision": "4cb6a0ab22f85f75634c",
+    "url": "/amazonlinkgen-app/static/js/main.2857c873.chunk.js"
   },
   {
     "revision": "884dfa4fe6753d1a71ec",
