@@ -2,12 +2,14 @@
   "name": "amazonlinkgen-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nukedbit.github.io/amazonlinkgen-app",
   "dependencies": {
     "@types/jest": "24.0.15",
     "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "clipboard-copy": "^3.0.0",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.15",
     "office-ui-fabric-react": "^7.14.0",
     "react": "^16.8.6",
@@ -18,6 +20,8 @@
   "scripts": {
     "start": "HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn run build",
+   "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
