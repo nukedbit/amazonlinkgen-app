@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/amazonlinkgen-app/precache-manifest.140eea580f73f10a6825aa519f5a430c.js"
+  "/amazonlinkgen-app/precache-manifest.d663d90aac93d8f9727b0d560ae245cc.js"
 );
 
 self.addEventListener('message', (event) => {
