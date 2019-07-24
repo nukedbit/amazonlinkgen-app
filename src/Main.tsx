@@ -116,7 +116,7 @@ export default class Main extends React.Component<IMainProps, any> {
                 }} />
             </Stack>
             <Stack  horizontalAlign="center" {...columnProps}>
-                <Checkbox checked={!_.isEmpty(code) && rememberCode} label="Remember affiliate code (in the browser no data is sent anywhere)" onChange={this.onCheckboxChange} />
+                <Checkbox checked={rememberCode} label="Remember affiliate code (in the browser no data is sent anywhere)" onChange={this.onCheckboxChange} />
                 <DefaultButton
                     disabled={_.isEmpty(url) || _.isEmpty(code)}
                     text="Generate"
