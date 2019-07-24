@@ -20,7 +20,7 @@ export default class Main extends React.Component<IMainProps, any> {
         super(props);
         const columnProps: Partial<IStackProps> = {
             tokens: { childrenGap: 15 },
-            styles: { root: { width: "500px", } }
+            styles: { root: { width: "100%", maxWidth:"500px" } }
         };
         let code = localStorage.getItem("code");
         this.state = {
