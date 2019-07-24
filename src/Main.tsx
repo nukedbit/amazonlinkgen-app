@@ -123,6 +123,9 @@ export default class Main extends React.Component<IMainProps, any> {
                 />
                 {this.showLink()}
             </Stack>
+            <Stack horizontal   horizontalAlign="center" >
+                <a href="https://www.nukedbit.it">Built by NukedBit</a> &nbsp;- &nbsp;<a href="https://github.com/nukedbit/amazonlinkgen-app">Get Source Code</a>
+            </Stack>
         </Stack>);
     }
 
