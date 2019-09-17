@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c7d8670f5141bcad8ed878c352f1cdb6",
+    "revision": "9278da5abbc96b0329e5046aa8324a95",
     "url": "/amazonlinkgen-app/index.html"
   },
   {
